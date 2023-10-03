@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     const ecommerceData = await Category.findAll({
       include: [{ model: Product }],
     });
-    if (ecommerceData.length === 0) {
+    if (ecommerceData.length == 0) {
       return res.status(404).json({ message: 'No category found!' });
       
     }
@@ -49,8 +49,8 @@ router.post('/', async (req, res) => {
     const { category_name } = req.body
 
     if (!category_name) {
-      res.status(400).json({ message: 'Please pass correct structure of name' });
-      return;
+      return res.status(400).json({ message: 'Please pass correct structure of name' });
+      
     }
 
     const newCategory = Category.create(req.body);
@@ -89,7 +89,6 @@ router.put('/:id', async (req, res) => {
 });
 
 
-
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
@@ -100,10 +99,10 @@ router.delete('/:id', async (req, res) => {
 
     })
     if (!deletedCategory) {
-      res.status(404).json({
+        return res.status(404).json({
         message: 'No category is deleted!'
     })
-      return;
+      
     }
     return res.status(200).json(deletedCategory);
   } catch (err) {

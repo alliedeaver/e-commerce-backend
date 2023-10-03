@@ -50,8 +50,7 @@ router.post('/', async (req, res) => {
     const { tag_name } = req.body
 
     if (!tag_name) {
-      res.status(400).json({ message: 'Please pass correct structure of tag' });
-      return;
+      return res.status(400).json({ message: 'Please pass correct structure of tag' });
     }
 
       const newTag = Tag.create(req.body);
@@ -71,8 +70,7 @@ router.put('/:id', (req, res) => {
     const { tag_name } = req.body
 
     if (!tag_name) {
-      res.status(400).json({ message: 'Please pass correct structure of the tag' });
-      return;
+      return res.status(400).json({ message: 'Please pass correct structure of the tag' });
     }
 
     const updatedTag = Tag.update(req.body,
@@ -99,10 +97,10 @@ router.delete('/:id', async (req, res) => {
 
     })
     if (!TagCategory) {
-      res.status(404).json({
+        return res.status(404).json({
         message: 'No tag is deleted!'
     })
-      return;
+    
     }
     return res.status(200).json(deletedTag);
   } catch (err) {
